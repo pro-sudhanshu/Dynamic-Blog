@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{post.post_title}}
+{% endblock %}
+
+{% block styles %}
+<style>
+  .post-header {
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+
+  .post-content {
+    margin-top: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Post Header with Background Image -->
+<header class="post-header mb-4" style="background-image: url('{{ post.post_img }}');"></header>
+
+<!-- Post Content Section -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <!-- Post Title and Meta -->
+      <h1 class="mb-3">{{ post.post_title }}</h1>
+
+      <!-- Post Category and Published Date -->
+      <p class="post-meta">
+        <span class="badge bg-primary">{{ post.post_category }}</span> |
+        Published on {{ post.post_published_date|date:"F d, Y" }}
+      </p>
+
+      <!-- Post Content -->
+      <div class="post-content">
+        <p>{{ post.post_content }}</p>
+      </div>
+
+      <!-- Related Posts (Optional) -->
+      <h3 class="mt-5 my-3">Related Posts</h3>
+      <div class="row">
+        <!-- Loop through related posts -->
+        {% for related_post in related_posts %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="{{related_post.post_img}}" class="card-img-top" alt="Related Post Image">
+            <div class="card-body">
+              <h5 class="card-title">{{related_post.post_title}}</h5>
+              <a href="{% url 'details' related_post.post_slug %}" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- Repeat related posts -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

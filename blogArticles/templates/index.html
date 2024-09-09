@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Dynamic Blogs{% endblock %}
+{% block styles %}
+<style>
+    .hero-section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        /* background: linear-gradient(135deg, #007bff, #00c6ff); */
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: bold;
+    }
+
+    .btn-custom {
+        font-size: 1.2rem;
+        color: #000;
+        background-color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #f8f9fa;
+        color: #000;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-dark-subtle">
+    <div>
+        <h1 class="hero-title px-2 mb-3">Welcome to Dynamic Blogs</h1>
+        <p class="hero-desc px-5 mb-3 fs-5">Explore our blog for the latest insights, articles, and updates. Our blog covers
+            a wide range of topics to
+            keep you informed and engaged. From technology to lifestyle, we’ve got something for everyone. Stay tuned
+            for more exciting content!</p>
+        <div>
+            <a href="{% url 'blog' %}" class="btn btn-custom">Go to Blogs</a>
+            <a href="#" class="btn btn-custom">About Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

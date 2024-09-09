@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card img{
+        height: 200px !important;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        /* Grows the card on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        /* Adds shadow effect on hover */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-3">Search Results for "{{ query }}"</h2>
+
+    {% if page_obj %}
+    <div class="row">
+        {% for post in page_obj %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ post.post_img }}" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.post_title }}</h5>
+                    <p class="card-text">{{ post.post_content|slice:":100" }}...</p>
+                    <a href="{% url 'details' post.post_slug %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <nav aria-label="..."></nav>
+        <ul class="pagination">
+            {% for page_num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == page_num %}active{% endif %}">
+                <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% else %}
+    <p>No results found.</p>
+    <a class="btn btn-primary" href="/blog">Back to blog</a>
+    {% endif %}
+    
+</div>
+{% endblock %}
