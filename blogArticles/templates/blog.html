@@ -26,6 +26,7 @@ Blogs - Dynamic Blogs
 {% block content %}
 <div class="container my-5">
     <div class="row">
+        {% if page_obj %}
         <!-- First Card -->
         {% for post in page_obj %}
         <div class="col-md-4 mb-4">
@@ -40,6 +41,9 @@ Blogs - Dynamic Blogs
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p>Sorry, No post available !! Please get back to us i a while.</p>
+        {% endif %}
     </div>
 
     <nav aria-label="...">
