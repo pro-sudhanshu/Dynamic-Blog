@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from blogArticles.models import Post
+from django.shortcuts import render, get_object_or_404
+from .models import Post
 from django.core.paginator import Paginator
 from django.db.models import Q
 
